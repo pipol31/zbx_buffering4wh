@@ -1,4 +1,9 @@
-Oui, bien sûr — voici le schéma en Markdown avec une police fixe :
+# Buffering for Zabbix WebHook
+Il s'agit d'ajouter une fonctionnalité plus robuste que le simple retry à un WebHook Zabbix. Si le WebHook échoue dans sa tentative de notification au sens large, alors il se rabat sur un service local qui bufferize les données et qui possède un mécanisme de rejeu.
+Ici on part sur une notification via un POST de payload JSON qui s'il échoue est conservé dans un fichier JSON avec des tentatives de réémissions (backoff expo) et qui loggue si au final le endpoint reste indisponible ou en erreur.
+Le mécanisme (écoute / réémission) sera lancé via systemctl.
+
+(Vibe Codé avec Claude)
 
 ```text
 ┌─────────────────────────────────────────┐
